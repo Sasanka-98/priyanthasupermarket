@@ -1,0 +1,38 @@
+.btnall{
+    width: 150px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.btn-cancel{
+    background-color: #FF0000;
+    color: white;
+}
+.btn-cancel:hover{
+    background-color: #FF0000;
+    color: white;
+}
+
+
+.btn-update{
+    background-color: #FFFF00;
+    color: black;
+}
+.btn-update:hover{
+    background-color: #FFFF00;
+    color: black;
+
+}
+
+
+.btn-add{
+    background-color: #028a0f;
+    color: white;
+
+}
+.btn-add:hover{
+    background-color: #028a0f;
+    color: white;
+
+}
+

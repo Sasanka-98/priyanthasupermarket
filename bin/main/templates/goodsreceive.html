@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Priyantha Supermarket : Goods Receive</title>
+    <link rel="shortcut icon" href="images/Logo.png" type="image/x-icon" />
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css" />
+
+    <!-- Bootstrap js -->
+    <script src="bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css" />
+
+    <!-- jQuery js -->
+    <script src="script/jQuery.js"></script>
+
+    <!-- custom css file -->
+    <link rel="stylesheet" href="" />
+
+    <!-- common css -->
+    <link rel="stylesheet" href="style/common.css" />
+
+    <!-- button css -->
+    <link rel="stylesheet" href="style/button.css" />
+
+    <!-- tableCommonFunction.js -->
+    <script src="script/tableCommonFunction.js"></script>
+
+    <!-- link commonFunction.js -->
+    <script src="script/commonFunction.js"></script>
+
+    <!-- validation.js -->
+    <script src="script/validation.js"></script>
+
+    <!-- custom js file -->
+    <script src="controllerjs/goodsreceive.js"></script>
+  </head>
+  <body>
+    <div class="container mt-2">
+      <!-- title start -->
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10 text-center title-div py-2">
+          <h2><i class="fa-solid fa-boxes-stacked fa-1x"></i> Goods Receive Management</h2>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <!-- title end -->
+
+      <!-- form area start -->
+      <div class="row mt-3">
+        <div class="col-1"></div>
+        <div class="col-10 form-div p-2">
+          <!-- form start -->
+          <form
+            onsubmit="return false; // in order to prevent form from refreshing when submit"
+            autocomplete="off"
+          >
+            <!-- required mark start -->
+            <div class="row">
+              <div class="col-12 fw-bold">
+                <span class="text-danger">*</span> Required
+              </div>
+            </div>
+            <!-- required mark end -->
+
+            <!-- item code/ item's name start -->
+            <div class="row mt-2">
+              <!-- item code start -->
+              <div class="col-3">
+                <label for="textItemCode" class="form-label fw-bold">
+                  Item's Code : <span class="text-danger">*</span>
+                </label>
+                <input type="text" id="textItemCode" class="form-control" placeholder="Enter Item's Code" required onkeyup="">
+                <div class="valid-feedback">Value is correct!</div>
+                <div class="invalid-feedback">Value is incorrect!</div>
+              </div>
+              <!-- item code end -->
+
+              <!-- item's name start -->
+              <div class="col-9">
+                <label for="textItemName" class="form-label fw-bold">
+                  Item's Name :
+                </label>
+                <input type="text" id="textItemName" class="form-control" readonly>
+              </div>
+              <!-- item's name end -->
+            </div>
+            <!-- item code/ item's name end -->
+
+            <!-- supplier's bill no start -->
+            <div class="row mt-2">
+              <div class="col-3">
+                <label for="textSupplierBillNo" class="form-label fw-bold">
+                  Supplier's Bill No : <span class="text-danger">*</span>
+                </label>
+                <input type="text" id="textSupplierBillNo" class="form-control" placeholder="Enter Supplier's Bill No" required onkeyup="">
+                <div class="valid-feedback">Value is correct!</div>
+                <div class="invalid-feedback">Value is incorrect!</div>
+
+              </div>
+            </div>
+            <!-- supplier's bill no end -->
+            
+            <!-- batch no/ date of expiry start -->
+            <div class="row mt-2">
+              <!-- batch no start -->
+              <div class="col-3">
+                <label for="textBatchNo" class="form-label fw-bold">
+                  Batch No : <span class="text-danger">*</span>
+                </label>
+                <input type="text" id="textBatchNo" class="form-control" placeholder="Enter Batch No" required onkeyup="">
+                <div class="valid-feedback">Value is correct!</div>
+                <div class="invalid-feedback">Value is incorrect!</div>
+              </div>
+              <!-- batch no end -->
+
+              <!-- date of expiry start -->
+              <div class="col-3">
+                <label for="dateDoE" class="form-label fw-bold">
+                  Date of Expiry : <span class="text-danger">*</span>
+                </label>
+                <input type="date" id="dateDoE" class="form-control" required onchange="">
+                <div class="valid-feedback">Value is correct!</div>
+                <div class="invalid-feedback">Value is incorrect!</div>
+              </div>
+              <!-- date of expiry end -->
+            </div>
+            <!-- batch no/ date of expiry end -->
+            
+            <!-- received as a package check box start -->
+            <div class="row mt-2">
+              <div class="col-3">
+                <label for="" class="form-label fw-bold">
+                  Receiving Method :
+                </label>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="checkPackageStatus"
+                    onchange=""
+                  />
+                  <label class="form-check-label" for="checkPackageStatus">
+                    Received As a Package
+                  </label>
+                </div>
+              </div>
+            </div>
+            <!-- received as a package check box end -->
+            
+            <!-- package capacity/ no of pcs, packages start -->
+            <div class="row mt-2">
+              <!-- package capacity start -->
+              <div class="col-3">
+                <label for="numberPackageCapacity" class="form-label fw-bold">
+                  Package Capacity : <span class="text-danger">*</span>
+                </label>
+                <input type="number" id="numberPackageCapacity" class="form-control" placeholder="Enter Package Capacity" required disabled onkeyup="">
+                <div class="valid-feedback">Value is correct!</div>
+                <div class="invalid-feedback">Value is incorrect!</div>
+              </div>
+              <!-- package capacity end -->
+              
+              <!-- no of pcs, packages start -->
+              <div class="col-3">
+                <label for="numberPcs" class="form-label fw-bold">
+                  No of Pcs / Packages : <span class="text-danger">*</span>
+                </label>
+                <input type="number" id="numberPcs" class="form-control" placeholder="Enter No of Pcs / Packages" required onkeyup="">
+                <div class="valid-feedback">Value is correct!</div>
+                <div class="invalid-feedback">Value is incorrect!</div>
+              </div>
+              <!-- no of pcs, packages end -->
+            </div>
+            <!-- package capacity/ no of pcs, packages end -->
+
+            <!-- buttons Start -->
+            <div class="row mt-3">
+              <div class="col-6 text-start">
+                <button
+                  type="submit"
+                  class="btn fw-bold btnall btn-add me-3"
+                  onclick=""
+                >
+                  <i class="fa-solid fa-plus-square"></i> Add
+                </button>
+                <button
+                  type="submit"
+                  class="btn fw-bold me-2 btnall btn-update"
+                >
+                  <i class="fa-solid fa-edit"></i> Update
+                </button>
+              </div>
+              <div class="col-6 text-end">
+                <button type="reset" class="btn fw-bold btnall btn-cancel">
+                  <i class="fa-solid fa-recycle"></i> Cancel
+                </button>
+              </div>
+            </div>
+            <!-- buttons End -->
+          </form>
+          <!-- form end -->
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <!-- form area end -->
+
+      <!-- table area start -->
+      <div class="row mt-3">
+        <div class="col-1"></div>
+        <div class="col-10 p-0">
+          <!-- table start -->
+          <table
+            class="table table-hover table-bordered table-striped text-center align-middle"
+            id=""
+          >
+            <thead class="table-header">
+              <tr class="">
+                <th>#</th>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 3</th>
+                <th>Column 4</th>
+                <th>Column 5</th>
+                <th>Modify</th>
+              </tr>
+            </thead>
+            <tbody class="table-success">
+              <tr class="">
+                <td>1</td>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 4</td>
+                <td>Value 5</td>
+                <td>
+                  <button type="button" class="btn btn-outline-primary fw-bold">
+                    Edit
+                  </button>
+                  <button type="button" class="btn btn-outline-danger fw-bold">
+                    Delete
+                  </button>
+                  <button type="button" class="btn btn-outline-success fw-bold">
+                    View
+                  </button>
+                </td>
+              </tr>
+              <tr class="">
+                <td>1</td>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 4</td>
+                <td>Value 5</td>
+                <td>
+                  <button type="button" class="btn btn-outline-primary fw-bold">
+                    Edit
+                  </button>
+                  <button type="button" class="btn btn-outline-danger fw-bold">
+                    Delete
+                  </button>
+                  <button type="button" class="btn btn-outline-success fw-bold">
+                    View
+                  </button>
+                </td>
+              </tr>
+              <tr class="">
+                <td>1</td>
+                <td>Value 1</td>
+                <td>Value 2</td>
+                <td>Value 3</td>
+                <td>Value 4</td>
+                <td>Value 5</td>
+                <td>
+                  <button type="button" class="btn btn-outline-primary fw-bold">
+                    Edit
+                  </button>
+                  <button type="button" class="btn btn-outline-danger fw-bold">
+                    Delete
+                  </button>
+                  <button type="button" class="btn btn-outline-success fw-bold">
+                    View
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- table end -->
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <!-- table area end -->
+    </div>
+  </body>
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Priyantha Supermarket : Employee</title>
+    <link rel="shortcut icon" href="images/Logo.png" type="image/x-icon" />
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="bootstrap-5.2.3-dist/css/bootstrap.min.css" />
+
+    <!-- Bootstrap js -->
+    <script src="bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" href="fontawesome-free-6.4.2-web/css/all.css" />
+
+    <!-- jQuery js -->
+    <script src="script/jQuery.js"></script>
+
+    <!-- employee css -->
+    <link rel="stylesheet" href="style/employee.css" />
+
+    <!-- common css -->
+    <link rel="stylesheet" href="style/common.css" />
+
+    <!-- button css -->
+    <link rel="stylesheet" href="style/button.css" />
+
+    <!-- tableCommonFunction.js -->
+    <script src="script/tableCommonFunction.js"></script>
+
+    <!-- link commonFunction.js -->
+    <script src="script/commonFunction.js"></script>
+
+    <!-- validation.js -->
+    <script src="script/validation.js"></script>
+
+    <!-- employee.js -->
+    <script src="controllerjs/employee.js"></script>
+  </head>
+  <body>
+    <div class="container mt-2">
+      <!-- title start -->
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10 text-center title-div py-2">
+          <h2><i class="fa-solid fa-user fa-1x"></i> Employee Management</h2>
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <!-- title end -->
+
+      <!-- form area start -->
+      <div class="row mt-3">
+        <div class="col-1"></div>
+        <div class="col-10 form-div p-2">
+          <!-- form start -->
+          <form
+            onsubmit="return false; // in order to prevent form from refreshing when submit"
+            autocomplete="off"
+          >
+            <!-- required mark start -->
+            <div class="row">
+              <div class="col-12 fw-bold">
+                <span class="text-danger">*</span> Required
+              </div>
+            </div>
+            <!-- required mark end -->
+
+            <!-- Full Name Start -->
+            <div class="row mt-2">
+              <label for="textFullName" class="col-3 col-form-label fw-bold">
+                Full Name : <span class="text-danger">*</span>
+              </label>
+              <div class="col-9">
+                <input
+                  type="text"
+                  required
+                  class="form-control"
+                  placeholder="Enter Full Name"
+                  id="textFullName"
+                  onkeyup="//employee.fullName = this.value;
+                  inputNameValidator(this, '^([A-Z][a-z]{3,10}[\\s])+([A-Z][a-z]{3,10})$'); // defined in ../static/controllerjs/employee-1.js"
+                />
+                <div class="valid-feedback">Value is correct!</div>
+                <div class="invalid-feedback">Value is incorrect!</div>
+              </div>
+            </div>
+            <!-- Full Name End -->
+
+            <!-- Calling name/ Nic/ Gender/ Dob Start -->
+            <div class="row mt-2">
+              <!-- Calling Name Start -->
+              <div class="col-3">
+                <label for="textCallingName" class="form-label fw-bold">
+                  Calling Name : <span class="text-danger">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="textCallingName"
+                  class="form-select"
+                  placeholder="Enter Calling Name"
+                  required
+                  list="dlNameParts"
+                  onkeyup="//employee.callingName = this.value;
+                  textCallingNameValidator(this); // defined in ../static/controllerjs/employee-1.js"
+                />
+                <div class="valid-feedback">Value is correct!</div>
+                <div class="invalid-feedback">Value is incorrect!</div>
+
+                <datalist id="dlNameParts">
+                  <option value="Part 1"></option>
+                  <option value="Part 2"></option>
+                  <option value="Part 3"></option>
+                  <option value="Part 4"></option>
+                </datalist>
+              </div>
+              <!-- Calling Name End -->
+
+              <!-- Nic Start -->
+              <div class="col-3">
+                <label for="textNic" class="form-label fw-bold">
+                  Nic : <span class="text-danger">*</span>
+                </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="textNic"
+                  required
+                  placeholder="Enter NIC"
+                  onkeyup="textInputValidator(this, '^([0-9]{9}[vVxX])|([0-9]{12})$', 'employee', 'nic'); // defined in ../static/script/validation.js"
+                />
+                <div class="valid-feedback">Value is correct!</div>
+                <div class="invalid-feedback">Value is incorrect!</div>
+              </div>
+              <!-- Nic End -->
+
+              <!-- Gender Start -->
+              <div class="col-3">
+                <div class="row">
+                  <label for="" class="form-label fw-bold">
+                    Gender : <span class="text-danger">*</span>
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="gender"
+                    class="form-check-input"
+                    id="radioBtnMale"
+                    value="Male"
+                    required
+                  />
+                  <label for="radioBtnMale" class="form-check-label fw-bold">
+                    Male
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="gender"
+                    class="form-check-input"
+                    id="radioBtnFemale"
+                    value="Female"
+                  />
+                  <label for="radioBtnFemale" class="form-check-label fw-bold">
+                    Female
+                  </label>
+                </div>
+              </div>
+              <!-- Gender End -->
+
+              <!-- Date of Birth Start -->
+              <div class="col-3">
+                <label for="dateDoB" class="form-label fw-bold">
+                  Date of Birth : <span class="text-danger">*</span>
+                </label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="dateDoB"
+                  required
+                  onchange="textInputValidator(this, '^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$', 'employee', 'dob'); // defined in ../static/script/validation.js"
+                />
+                <div class="valid-feedback">Value is correct!</div>
+                <div class="invalid-feedback">Value is incorrect!</div>
+              </div>
+              <!-- Date of Birth End -->
+            </div>
+            <!-- Calling name/ Nic/ Gender/ Dob End -->
+
+            <!-- Mobile no/ Land no/ Email Start -->
+            <div class="row mt-2">
+              <!-- Mobile No Start -->
+              <div class="col-3">
+                <label for="textMobileNo" class="form-label fw-bold">
+                  Mobile No : <span class="text-danger">*</span>
+                </label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fa-solid fa-mobile-retro"></i>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control rounded-end"
+                    id="textMobileNo"
+                    required
+                    placeholder="Enter Mobile No"
+                    onkeyup="textInputValidator(this, '^[0][7][01245678][0-9]{7}$', 'employee', 'mobile'); // defined in ../static/script/validation.js"
+                  />
+                  <div class="valid-feedback">Value is correct!</div>
+                  <div class="invalid-feedback">Value is incorrect!</div>
+                </div>
+              </div>
+              <!-- Mobile No End -->
+
+              <!-- Email Start -->
+              <div class="col-6">
+                <label for="textEmail" class="form-label fw-bold">
+                  Email : <span class="text-danger">*</span>
+                </label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fa-solid fa-envelope"></i>
+                  </span>
+                  <input
+                    type="email"
+                    class="form-control rounded-end"
+                    id="textEmail"
+                    required
+                    placeholder="Enter Email Address"
+                    onkeyup="textInputValidator(this, '^[A-Za-z0-9\\-\\_]{5,20}[@][a-z]{5,10}[.][a-z]{2,3}$', 'employee', 'email'); // defined in ../static/script/validation.js"
+                    value=""
+                  />
+                  <div class="valid-feedback">Value is correct!</div>
+                  <div class="invalid-feedback">Value is incorrect!</div>
+                </div>
+              </div>
+              <!-- Email End -->
+
+              <!-- Land No Start -->
+              <div class="col-3">
+                <label for="textLandNo" class="form-label fw-bold">
+                  Land No :
+                </label>
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <i class="fa-solid fa-phone-volume"></i>
+                  </span>
+                  <input
+                    type="text"
+                    class="form-control rounded-end"
+                    id="textLandNo"
+                    placeholder="Enter Land No"
+                    onkeyup="textInputValidator(this, '^[0][1-689][0-9]{8}$', 'employee', 'land_no'); // defined in ../static/script/validation.js"
+                  />
+                  <div class="valid-feedback">Value is correct!</div>
+                  <div class="invalid-feedback">Value is incorrect!</div>
+                </div>
+              </div>
+              <!-- Land No End -->
+            </div>
+            <!-- Mobile no/ Land no/ Email End -->
+
+            <!-- Address/ Note Start -->
+            <div class="row mt-2">
+              <!-- Address Start -->
+              <div class="col-6">
+                <label for="textAddress" class="form-label fw-bold text-dark">
+                  Address : <span class="text-danger">*</span>
+                </label>
+                <textarea
+                  id="textAddress"
+                  required
+                  class="form-control"
+                  placeholder="Enter Address"
+                  onkeyup="textInputValidator(this, '^([A-Za-z0-9\\s\\/\\-]{1,20}[\\,][\\s])+([A-Z][a-z]{1,20}[.])$', 'employee', 'address'); // defined in ../static/script/validation.js"
+                ></textarea>
+
+                <div class="valid-feedback">Value is correct!</div>
+                <div class="invalid-feedback">Value is incorrect!</div>
+              </div>
+              <!-- Address End -->
+
+              <!-- Note Start -->
+              <div class="col-6">
+                <label for="textNote" class="form-label fw-bold text-dark">
+                  Note :
+                </label>
+                <!-- textInputValidator(element eka, required data pattern eka, mapping object eka, data binding property eka) -->
+                <textarea
+                  id="textNote"
+                  class="form-control"
+                  placeholder="Enter Note"
+                  onkeyup="textInputValidator(this, '^.*$', 'employee', 'note'); // defined in ../static/script/validation.js"
+                ></textarea>
+              </div>
+              <!-- Note End -->
+            </div>
+            <!-- Address/ Note End -->
+
+            <!-- Designation/ Civil status/ Employee status Start -->
+            <div class="row mt-2">
+              <!-- Designation Start -->
+              <div class="col-4">
+                <label for="selectDesignation" class="form-label fw-bold">
+                  Designation : <span class="text-danger">*</span>
+                </label>
+                <select
+                  name=""
+                  id="selectDesignation"
+                  class="form-select"
+                  required
+                  onchange="selectDValidator(this, '', 'employee', 'designation'); // defined in ../static/script/validation.js"
+                ></select>
+              </div>
+              <!-- Designation End -->
+
+              <!-- Civil Status Start -->
+              <div class="col-4">
+                <label for="selectCivilstatus" class="form-label fw-bold">
+                  Civil Status : <span class="text-danger">*</span>
+                </label>
+                <select
+                  name=""
+                  id="selectCivilstatus"
+                  class="form-select"
+                  required
+                  onchange="selectSValidator(this, '', 'employee', 'civilstatus'); // defined in ../static/script/validation.js"
+                >
+                  <option value="" selected disabled>
+                    Select Civil Status
+                  </option>
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+                </select>
+              </div>
+              <!-- Civil Status End -->
+
+              <!-- Employee status Start -->
+              <div class="col-4">
+                <label for="selectEmployeestatus" class="form-label fw-bold">
+                  Employee Status : <span class="text-danger">*</span>
+                </label>
+                <select
+                  name=""
+                  id="selectEmployeestatus"
+                  class="form-select"
+                  required
+                  onchange="selectDValidator(this, '', 'employee', 'employeestatus'); // defined in ../static/script/validation.js"
+                ></select>
+                <div class="valid-feedback">Value is correct!</div>
+                <div class="invalid-feedback">Value is incorrect!</div>
+              </div>
+              <!-- Employee status End -->
+            </div>
+            <!-- Designation/ Civil status/ Employee status End -->
+
+            <!-- buttons Start -->
+            <div class="row mt-3">
+              <div class="col-6 text-start">
+                <button
+                  type="submit"
+                  class="btn fw-bold btnall btn-add me-3"
+                  onclick="submitEmployee(); // defined in ../static/controllerjs/employee-1.js"
+                >
+                  <i class="fa-solid fa-plus-square"></i> Add
+                </button>
+                <button
+                  type="submit"
+                  class="btn fw-bold me-2 btnall btn-update"
+                >
+                  <i class="fa-solid fa-edit"></i> Update
+                </button>
+              </div>
+              <div class="col-6 text-end">
+                <button type="reset" class="btn fw-bold btnall btn-cancel">
+                  <i class="fa-solid fa-recycle"></i> Cancel
+                </button>
+              </div>
+            </div>
+            <!-- buttons End -->
+          </form>
+          <!-- form end -->
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <!-- form area end -->
+
+      <!-- table area start -->
+      <div class="row mt-3">
+        <div class="col-1"></div>
+        <div class="col-10">
+          <!-- table start -->
+          <table
+            class="table table-hover table-bordered table-striped text-center align-middle"
+            id="tableEmployee"
+          >
+            <thead class="table-header">
+              <tr>
+                <th>#</th>
+                <th>Full Name</th>
+                <th>NIC</th>
+                <th>Has User Account</th>
+                <th>Mobile</th>
+                <th>Designation</th>
+                <th>Status</th>
+                <th>Modify</th>
+              </tr>
+            </thead>
+            <tbody class="table-success">
+              <tr>
+                <td>1</td>
+                <td>Nadun Mahima</td>
+                <td>980327894V</td>
+                <td>0713653294</td>
+                <td>Working</td>
+                <td>
+                  <button type="button" class="btn fw-bold text-light">
+                    Edit
+                  </button>
+                  <button type="button" class="btn fw-bold text-light">
+                    Delete
+                  </button>
+                  <button type="button" class="btn fw-bold text-light">
+                    View
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Isuru Lakmal</td>
+                <td>980327894V</td>
+                <td>0713653294</td>
+                <td>Working</td>
+                <td>
+                  <button type="button" class="btn btn-primary fw-bold">
+                    Edit
+                  </button>
+                  <button type="button" class="btn btn-danger fw-bold">
+                    Delete
+                  </button>
+                  <button type="button" class="btn btn-success fw-bold">
+                    View
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Ashen Shanuka</td>
+                <td>980327894V</td>
+                <td>0713653294</td>
+                <td>Working</td>
+                <td>
+                  <button type="button" class="btn btn-outline-primary fw-bold">
+                    Edit
+                  </button>
+                  <button type="button" class="btn btn-outline-danger fw-bold">
+                    Delete
+                  </button>
+                  <button type="button" class="btn btn-outline-success fw-bold">
+                    View
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Sahan Viduranga</td>
+                <td>980327894V</td>
+                <td>0713653294</td>
+                <td>Working</td>
+                <td>
+                  <button type="button" class="btn text-light">
+                    <i class="fa-solid fa-edit"></i>
+                  </button>
+                  <button type="button" class="btn text-light">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                  <button type="button" class="btn text-light">
+                    <i class="fa-solid fa-print"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Kavindu Gayashan</td>
+                <td>980327894V</td>
+                <td>0713653294</td>
+                <td>Working</td>
+                <td>
+                  <button type="button" class="btn text-light">
+                    <i class="fa-solid fa-edit"></i> Edit
+                  </button>
+                  <button type="button" class="btn btn-danger">
+                    <i class="fa-solid fa-trash"></i> Delete
+                  </button>
+                  <button type="button" class="btn btn-outline-primary">
+                    <i class="fa-solid fa-print"></i> View
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Pasindu Lakshan</td>
+                <td>980327894V</td>
+                <td>0713653294</td>
+                <td>Working</td>
+                <td>
+                  <div class="dropdown">
+                    <button
+                      class="btn text-light"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Edit</a></li>
+                      <li><a class="dropdown-item" href="#">Delete</a></li>
+                      <li><a class="dropdown-item" href="#">View</a></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Kavindu Gayashan</td>
+                <td>980327894V</td>
+                <td>0713653294</td>
+                <td>Working</td>
+                <td>
+                  <div class="dropdown">
+                    <button
+                      class="btn text-light"
+                      type="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <button
+                          type="button"
+                          class="btn btn-outline-primary fw-bold"
+                        >
+                          <i class="fa-solid fa-edit"></i> Edit
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          type="button"
+                          class="btn btn-outline-danger fw-bold"
+                        >
+                          <i class="fa-solid fa-trash"></i> Delete
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          type="button"
+                          class="btn btn-outline-success fw-bold"
+                        >
+                          <i class="fa-solid fa-print"></i> View
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- table end -->
+        </div>
+        <div class="col-1"></div>
+      </div>
+      <!-- table area end -->
+    </div>
+  </body>
+</html>
